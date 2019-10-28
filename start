@@ -1,0 +1,4 @@
+#!/bin/sh
+
+j2 -f env /tmp/logger.conf > /etc/supervisor/conf.d/logger.conf
+exec supervisord -n -c /etc/supervisor/supervisord.conf

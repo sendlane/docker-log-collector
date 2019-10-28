@@ -1,0 +1,16 @@
+version: '3'
+services:
+    log-collector:
+        env_file:
+            - .env
+        build: .
+        ports:
+            - "1234:80"
+        image: log-collector:latest
+        container_name: log-collector
+        volumes:
+            - /usr1/volumes/log-collector/logs:/logs
+networks:
+    default:
+        external:
+            name: nsq_default
