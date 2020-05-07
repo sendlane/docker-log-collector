@@ -11,7 +11,7 @@ services:
         volumes:
             - /usr1/volumes/log-collector/logs:/logs
             - /usr1/volumes/log-collector/server-logs:/server-logs
-            - scripts:/scripts
+            - ./scripts:/scripts
 networks:
     default:
         external:
