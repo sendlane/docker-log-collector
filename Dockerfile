@@ -9,10 +9,11 @@ RUN set -ex; \
 		rsyslog \
 		telnet \
 		netcat \
+        vim \
 	; \
 	( apt-get clean && rm -rf /var/lib/apt/lists/* )
 
-ENV PYTHON_PIP_VERSION 10.0.1
+ENV PYTHON_PIP_VERSION 20.1
 RUN set -ex; \
     wget -O get-pip.py 'https://bootstrap.pypa.io/get-pip.py';  \
     python3 get-pip.py \
@@ -31,22 +32,25 @@ RUN set -ex; \
     rm -f get-pip.py;
 
 # Setting env variable to avoid one of Airflow's dependencies to install a GPL dependency (unidecode)
+
+ADD files/requirements.txt /tmp/requirements.txt
 ENV SLUGIFY_USES_TEXT_UNIDECODE yes
 RUN set -ex; \
-    pip install python-dotenv j2cli
-RUN set -ex; \
-    pip install requests
+    pip install -r /tmp/requirements.txt
 
 RUN rm /etc/localtime
-RUN ln -s /usr/share/zoneinfo/US/Pacific /etc/localtime
+RUN ln -s /usr/share/zoneinfo/US/Eastern /etc/localtime
 
-ADD /files/nsq-1.1.0.linux-amd64.go1.10.3.tar.gz /tmp
+ADD files/nsq-1.1.0.linux-amd64.go1.10.3.tar.gz /tmp
 RUN cp /tmp/nsq-1.1.0.linux-amd64.go1.10.3/bin/* /usr/local/bin/
 
-ADD files/lighttpd.conf /etc/lighttpd/lighttpd.conf
 ADD start /start
 ADD files/logger.conf /tmp/logger.conf
 RUN chmod ug+x /start
 ADD files/monitor_log_channels.py /code/scripts/monitor_log_channels.py
 RUN chmod ug+x /code/scripts/monitor_log_channels.py
+COPY files/50-default.conf /etc/rsyslog.d/50-default.conf
+COPY files/vimrc /root/.vimrc
+COPY files/root-crontab /var/spool/cron/crontabs/root
+RUN chown root:crontab /var/spool/cron/crontabs/root
 CMD /start

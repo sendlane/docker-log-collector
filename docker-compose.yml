@@ -10,6 +10,8 @@ services:
         container_name: log-collector
         volumes:
             - /usr1/volumes/log-collector/logs:/logs
+            - /usr1/volumes/log-collector/server-logs:/server-logs
+            - scripts:/scripts
 networks:
     default:
         external:

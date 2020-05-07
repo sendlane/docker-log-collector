@@ -1,0 +1,7 @@
+set enc=utf-8
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+set expandtab
+syntax off
+"set nowrap
