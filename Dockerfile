@@ -10,6 +10,7 @@ RUN set -ex; \
 		telnet \
 		netcat \
         vim \
+        jq \
 	; \
 	( apt-get clean && rm -rf /var/lib/apt/lists/* )
 
@@ -53,4 +54,5 @@ COPY files/50-default.conf /etc/rsyslog.d/50-default.conf
 COPY files/vimrc /root/.vimrc
 COPY files/root-crontab /var/spool/cron/crontabs/root
 RUN chown root:crontab /var/spool/cron/crontabs/root
+RUN chmod 0600 /var/spool/cron/crontabs/root
 CMD /start

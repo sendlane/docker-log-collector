@@ -21,6 +21,7 @@ def stream_logs(path):
 
     form = request.get_json()
     print(path)
+    print(form)
     interval = path.split('/')[0]
     topic = form.get("topic")
 
@@ -109,6 +110,6 @@ def download_log(path):
             # send_file(filename_or_fp, mimetype=None, as_attachment=False, attachment_filename=None, add_etags=True, cache_timeout=None, conditional=False, last_modified=None)
             return send_file(filepath, attachment_filename=filename, mimetype="application/gzip", as_attachment=True)
         except Exception as exc:
-            return str(e)
+            return str(exc)
     else:
         return Response("No file found", 404)
