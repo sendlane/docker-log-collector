@@ -1,4 +1,5 @@
 #!/bin/sh
 
 j2 -f env /tmp/logger.conf > /etc/supervisor/conf.d/logger.conf
+printenv | grep -v "no_proxy" >> /etc/environment
 exec supervisord -n -c /etc/supervisor/supervisord.conf
