@@ -4,3 +4,4 @@
 10 * * * * /usr/local/bin/python -u /code/scripts/drop-off-klean.py >> /server-logs/klean-feed-transfer.log 2>&1
 0 2 * * * /usr/local/bin/python -u /code/scripts/aws-sync-and-delete.py --days 7 >> /server-logs/aws-sync-and-delete.log 2>&1
 0 1 * * * /usr/local/bin/aws s3 sync /logs/archive/logs s3://sl-eng-logs/logs >> /server-logs/aws-nightly-sync.log 2>&1
+15 1 * * * PYTHONPATH=/scripts/trend-reporting/lib /usr/local/bin/python /scripts/trend-reporting/run-report.py --append >> /server-logs/trend-daily-stats.log 2>&1

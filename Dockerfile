@@ -48,8 +48,6 @@ RUN cp /tmp/nsq-1.1.0.linux-amd64.go1.10.3/bin/* /usr/local/bin/
 ADD start /start
 ADD files/logger.conf /tmp/logger.conf
 RUN chmod ug+x /start
-ADD files/monitor_log_channels.py /code/scripts/monitor_log_channels.py
-RUN chmod ug+x /code/scripts/monitor_log_channels.py
 COPY files/50-default.conf /etc/rsyslog.d/50-default.conf
 COPY files/vimrc /root/.vimrc
 COPY files/root-crontab /var/spool/cron/crontabs/root
