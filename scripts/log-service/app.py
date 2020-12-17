@@ -4,7 +4,7 @@ import traceback
 import inspect
 import os
 import base64
-from datetime import datetime,timedelta
+from datetime import datetime,timedelta, date
 
 from lib.log_finder import LogFinder, converter
 
