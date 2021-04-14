@@ -1,4 +1,5 @@
 import sys
+
 import json
 import traceback
 import inspect
@@ -26,16 +27,16 @@ def stream_logs(path):
     topic = form.get("topic")
 
     start_year, start_month, start_day, start_hour = [
-        int(form.get("start_year")) if form.get("start_year",None) else None,
-        int(form.get("start_month")) if form.get("start_month",None) else None,
-        int(form.get("start_day")) if form.get("start_day",None) else None,
-        int(form.get("start_hour")) if form.get("start_hour",None) else None,
+        int(form.get("start_year")) if form.get("start_year",None) is not None else None,
+        int(form.get("start_month")) if form.get("start_month",None) is not None else None,
+        int(form.get("start_day")) if form.get("start_day",None) is not None else None,
+        int(form.get("start_hour")) if form.get("start_hour",None) is not None else None,
     ]
     end_year, end_month, end_day, end_hour = [
-        int(form.get("end_year")) if form.get("end_year",None) else None,
-        int(form.get("end_month")) if form.get("end_month",None) else None,
-        int(form.get("end_day")) if form.get("end_day",None) else None,
-        int(form.get("end_hour")) if form.get("end_hour",None) else None,
+        int(form.get("end_year")) if form.get("end_year",None) is not None else None,
+        int(form.get("end_month")) if form.get("end_month",None) is not None else None,
+        int(form.get("end_day")) if form.get("end_day",None) is not None else None,
+        int(form.get("end_hour")) if form.get("end_hour",None) is not None else None,
     ]
 
     print(start_year, start_month, start_day, start_hour)

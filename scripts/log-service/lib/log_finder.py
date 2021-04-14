@@ -102,8 +102,7 @@ class LogFinder:
                 self.log.error("Missing a file: " + json.dumps(file, default=converter))
                 missing.append( dict( info=file ) )
 
-            return [file_handles, missing, errors]
-        return [ [], [], [] ]
+        return [file_handles, missing, errors]
 
 
     def stream_all_logs(self):
@@ -111,11 +110,13 @@ class LogFinder:
         logs = self.find_logs()
         file_handles, missing, errors = self.get_file_handles(files=logs)
         
-        #print("######### Errors #########")
-        #print(errors)
-        #print("######### Missing #########")
-        #print(missing)
-        #print("######### DATA ##########")
+        self.log.debug("######### Errors #########")
+        self.log.debug(errors)
+        self.log.debug("######### Missing #########")
+        self.log.debug(missing)
+        self.log.debug("######### Filehandles ##########")
+        self.log.debug(file_handles)
+        self.log.debug("######### DATA ##########")
 
         for file_handle in file_handles:
             try:
