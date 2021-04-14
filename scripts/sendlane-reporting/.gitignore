@@ -1,0 +1,3 @@
+.env
+conf/credentials.json
+token.pickle
