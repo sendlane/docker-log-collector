@@ -4,7 +4,6 @@ import logging
 import sys
 import json
 import time
-import pprint
 import io
 import traceback
 import csv
@@ -13,7 +12,6 @@ import os
 import os.path
 from collections import defaultdict
 import argparse
-import pprint
 import math
 import pytz
 from io import StringIO
@@ -196,7 +194,8 @@ def display_stats():
 for type in filetypes:
     topic = type['prefix']
     interval = type['interval']
-    base_dir = f"/usr1/volumes/log-collector/logs/archive/logs/{interval}/{topic}/{report_date.year:04}/{report_date.month:02}/{report_date.day:02}/"
+    #base_dir = f"/usr1/volumes/log-collector/logs/archive/logs/{interval}/{topic}/{report_date.year:04}/{report_date.month:02}/{report_date.day:02}/"
+    base_dir = f"/logs/{interval}/{topic}/{report_date.year:04}/{report_date.month:02}/{report_date.day:02}/"
     # /logs/archive/logs/daily/email_sent_log/2020/10/12/email_sent_log-20201012.log.gz
     files = []
     if interval == 'daily':
@@ -220,8 +219,7 @@ for type in filetypes:
                             if line is None or line == '':
                                 break
                         except Exception as exc:
-                            print("### " + line + " ###")
-                            traceback.print_exc()
+                            root.info(traceback.format_exc())
                             continue
                         counter += 1
                         #if counter == 25000:
