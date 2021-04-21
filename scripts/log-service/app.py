@@ -76,10 +76,10 @@ def download_log(path):
     topic = form.get("topic")
 
     start_year, start_month, start_day, start_hour = [
-        int(form.get("year")) if form.get("year",None) else None,
-        int(form.get("month")) if form.get("month",None) else None,
-        int(form.get("day")) if form.get("day",None) else None,
-        int(form.get("hour")) if form.get("hour",None) else None,
+        int(form.get("year")) if form.get("year",None) is not None else None,
+        int(form.get("month")) if form.get("month",None) is not None else None,
+        int(form.get("day")) if form.get("day",None) is not None else None,
+        int(form.get("hour")) if form.get("hour",None) is not None else None,
     ]
 
     start, end = [None,None]
