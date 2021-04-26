@@ -50,7 +50,5 @@ ADD files/logger.conf /tmp/logger.conf
 RUN chmod ug+x /start
 COPY files/50-default.conf /etc/rsyslog.d/50-default.conf
 COPY files/vimrc /root/.vimrc
-COPY files/root-crontab /var/spool/cron/crontabs/root
-RUN chown root:crontab /var/spool/cron/crontabs/root
-RUN chmod 0600 /var/spool/cron/crontabs/root
+COPY files/root-crontab /tmp/root-crontab
 CMD /start

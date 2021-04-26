@@ -1,5 +1,10 @@
 #!/bin/sh
 
 j2 -f env /tmp/logger.conf > /etc/supervisor/conf.d/logger.conf
+
+j2 -f env /tmp/root-crontab > /var/spool/cron/crontabs/root
+chown root:crontab /var/spool/cron/crontabs/root
+chmod 0600 /var/spool/cron/crontabs/root
+
 printenv | grep -v "no_proxy" >> /etc/environment
 exec supervisord -n -c /etc/supervisor/supervisord.conf
